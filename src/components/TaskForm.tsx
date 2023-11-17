@@ -8,13 +8,15 @@ export const TaskForm = () => {
         <label className="text-2xl" htmlFor="taskForm">
           Task Form
         </label>
-        <input
-          type="text"
-          id="taskForm"
-          value={newEntry}
-          placeholder="add a task"
-        />
-        <button>Add Task</button>
+        <div className="flex">
+          <input
+            type="text"
+            id="taskForm"
+            value={newEntry}
+            placeholder="add a task"
+          />
+          <button className="w-100 ml-4">Add Task</button>
+        </div>
       </form>
     </>
   );
