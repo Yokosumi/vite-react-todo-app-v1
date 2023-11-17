@@ -1,7 +1,21 @@
 import { useState } from "react";
 
 export const TaskForm = () => {
-  const [newEntry, setNewEntry] = useState("");
+  const [inputState, setInputState] = useState("");
+  const [todos, setTodos] = useState<string[]>([]);
+
+  const addTodo = (
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+    if (inputState !== "") {
+      setTodos([...todos, inputState]);
+      setInputState("");
+      console.log(todos);
+    }
+  };
 
   return (
     <>
@@ -11,13 +25,22 @@ export const TaskForm = () => {
         </label>
         <div className="flex">
           <input
-            onChange={(event) => setNewEntry(event.target.value)}
+            onChange={(event) => setInputState(event.target.value)}
             type="text"
             id="taskForm"
-            value={newEntry}
+            value={inputState}
             placeholder="add a task"
           />
-          <button className="w-100 ml-4">Add Task</button>
+          <button className="w-100 ml-4" onClick={addTodo}>
+            Add Task
+          </button>
+        </div>
+        <div className="border border-black">
+          <ul>
+            {todos.map((todo) => {
+              return <li key={todo}>{todo}</li>;
+            })}
+          </ul>
         </div>
       </form>
     </>
