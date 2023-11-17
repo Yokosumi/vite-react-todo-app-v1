@@ -2,6 +2,7 @@ import { useState } from "react";
 
 export const TaskForm = () => {
   const [newEntry, setNewEntry] = useState("");
+
   return (
     <>
       <form className="grid place-content-center">
@@ -10,6 +11,7 @@ export const TaskForm = () => {
         </label>
         <div className="flex">
           <input
+            onChange={(event) => setNewEntry(event.target.value)}
             type="text"
             id="taskForm"
             value={newEntry}
