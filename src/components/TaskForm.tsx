@@ -16,12 +16,15 @@ export const TaskForm = () => {
         }
     }
 
-    interface IDeleteTodo {
-        event: React.MouseEvent<HTMLButtonElement>
-        text: string
-    }
+    // interface IDeleteTodo {
+    //     event: React.MouseEvent<HTMLButtonElement>
+    //     text: string
+    // }
 
-    const deleteTodo = ({ event, text }: IDeleteTodo) => {
+    const deleteTodo = (
+        event: React.MouseEvent<HTMLButtonElement>,
+        text: string
+    ) => {
         event.preventDefault()
         const newTodos = todos.filter((todo) => {
             return todo !== text
@@ -46,14 +49,21 @@ export const TaskForm = () => {
                     <button className="w-100 ml-4" onClick={addTodo}>
                         Add Task
                     </button>
-                    <button className="w-100 ml-4" onClick={deleteTodo}>
-                        Delete Task
-                    </button>
                 </div>
                 <div className="border border-black mt-4">
                     <ul>
                         {todos.map((todo) => {
-                            return <li key={todo}>{todo}</li>
+                            return (
+                                <div>
+                                    <li key={todo}>{todo}</li>
+                                    <button
+                                        className="w-100 ml-4"
+                                        onClick={(e) => deleteTodo(e, todo)}
+                                    >
+                                        Delete Task
+                                    </button>
+                                </div>
+                            )
                         })}
                     </ul>
                 </div>
